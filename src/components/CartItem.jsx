@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux";
+import { cart } from '../reducers/cart';
+
 export const CartItem = ({ product }) => {
+  const dispatch = useDispatch();
+
   return (
     <li>
       <span className="emoji" role="img" aria-label={product.title}>
@@ -10,10 +15,10 @@ export const CartItem = ({ product }) => {
       </div>
 
       <span className="actions">
-        <button type="button" onClick={() => {}}>
+        <button type="button" onClick={() => dispatch(cart.actions.removeItem(product)) }>
           -
         </button>
-        <button type="button" onClick={() => {}}>
+        <button type="button" onClick={() => dispatch(cart.actions.addItem(product)) }>
           +
         </button>
       </span>

@@ -1,11 +1,15 @@
+import { useSelector } from "react-redux";
 import { CartItem } from "./CartItem";
 
 export const Cart = () => {
-  // TODO - fetch products from the cart store
-  const products = [];
-
-  // TODO - calculate total from the sum of all products in the cart
-  const totalPrice = 0;
+  // fetch products from the cart store
+  const products = useSelector((store) => store.cart.items);
+ 
+  // calculate total from the sum of all products in the cart (array reducer)
+  const totalPrice = useSelector((store) => (
+    // reduce method keeps running count as iterate over time
+    store.cart.items.reduce((total, item) => (total + (item.price * item.quantity)), 0)
+  ));
 
   return (
     <div className="cart">
